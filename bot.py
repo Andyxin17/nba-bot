@@ -153,7 +153,7 @@ class Client(discord.Client):
                     embed.set_image(url=player['img'])
                     await channel.send(embed=embed)
                     daily_nba_users[member.id] = today
-            await asyncio.sleep(3600)  # every 1 hour
+            await asyncio.sleep(600)  # every 1 hour
 
     async def on_message(self, message):
         global unique_users
@@ -339,5 +339,6 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
 
