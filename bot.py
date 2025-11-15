@@ -159,6 +159,21 @@ class Client(discord.Client):
         global unique_users
         if message.author == self.user:
             return
+        if "gay" in message.content.lower() and message.mentions:
+            for mentioned in message.mentions:
+                number = random.randint(1, 10)
+                if random.random() < 0.3:
+                    penis_str = "(())"
+                else:
+                    penis_length = random.randint(0, 20)
+                    penis_str = f"8{'=' * penis_length}>"
+                try:
+                    await message.channel.send(
+                        f"Chef Hourly gayness update: <@{mentioned.id}>'s gayness right now is {number}"
+                )
+                await message.channel.send(f"Also {mentioned.mention}'s current penis size: {penis_str}")
+            except Exception as e:
+                print(f"Failed to send message: {e}")
         if 'play' in message.content.lower():
             await self.send_daily_nba_game(message)
 
@@ -324,4 +339,5 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
