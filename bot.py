@@ -6,9 +6,9 @@ from datetime import datetime, timedelta
 import pytz
 
 BOT_TOKEN = os.environ['BOT_TOKEN']
-CHANNEL_ID = 787516677730467883
-VIP_CHANNEL_ID = [1297127764423344169, 1439173021817376809]
-CHEF_USER_ID = 336077829672534026
+CHANNEL_ID = 1336640158640111732
+VIP_CHANNEL_ID = [1351454113212141588, 1351453716326125629]
+CHEF_USER_ID = 323775706800717825
 REQUIRED_USERS = random.randint(1,50)
 EMOJI_TO_TRACK = "🦞"
 unique_users = set()
@@ -153,7 +153,7 @@ class Client(discord.Client):
                     embed.set_image(url=player['img'])
                     await channel.send(embed=embed)
                     daily_nba_users[member.id] = today
-            await asyncio.sleep(10)  # every 1 hour
+            await asyncio.sleep(3600)  # every 1 hour
 
     async def on_message(self, message):
         global unique_users
@@ -294,7 +294,7 @@ class Client(discord.Client):
             await asyncio.sleep(86400)
             channel = self.get_channel(CHANNEL_ID)
             if channel:
-                number = random.randint(1, 10)
+                number = random.randint(1, )
                 if random.random() < 0.3:
                     penis_str = "(())"
                 else:
@@ -324,3 +324,4 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
