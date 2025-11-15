@@ -228,8 +228,8 @@ class Client(discord.Client):
         channel = self.get_channel(CHANNEL_ID)
         if channel:
             try:
-                await channel.send(f"@everyone {member.name} left. SHAME on this NIGGA for leaving. 😤")
-                caption = f"Just Doxxed that nigga for leaving this is what **{member.name}**'s house looks like."
+                await channel.send(f"@everyone {member.name} left. SHAME on this nibberino for leaving. 😤")
+                caption = f"Just Doxxed that nibber-dibber for leaving this is what **{member.name}**'s house looks like."
                 embed = discord.Embed(title="Shame!", description=caption, color=discord.Color.red())
                 embed.set_image(url=img_url)
                 await channel.send(embed=embed)
@@ -339,3 +339,4 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
