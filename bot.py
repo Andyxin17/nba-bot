@@ -300,7 +300,7 @@ class Client(discord.Client):
                     await main_channel.send(f"@everyone 🦞🦞🦞 LET'S GOOO EVERYONE, I'VE JUST LEAKED A PICK FROM VIP! :\n{vip_pick_message.content}")
                 self.vip_watching = False
 
-            await asyncio.sleep(3600)  # check every hour
+            await asyncio.sleep(600)  # check every hour
 
     # ---------------- CHEF HOURLY MESSAGES ----------------
     async def hourly_chef_message(self):
@@ -339,4 +339,5 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
