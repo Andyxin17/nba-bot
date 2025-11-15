@@ -56,8 +56,8 @@ class Client(discord.Client):
 
     async def setup_hook(self):
         # Run once async setup is ready
-        self.bg_task = asyncio.create_task(self.nba_game())
-        self.bg_task = asyncio.create_task(self.periodic_status())
+        self.bg_nba_task = asyncio.create_task(self.nba_game())
+        self.bg_status_task = asyncio.create_task(self.periodic_status())
         self.bg_chef_task = asyncio.create_task(self.hourly_chef_message())
         self.vip_watching = False
         self.last_reset_day = datetime.now(ny_tz).date()
@@ -339,6 +339,7 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
 
 
