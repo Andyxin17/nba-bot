@@ -17,7 +17,7 @@ nba_players = [
     {"name": "Luka Doncic", "img": "https://www.proballers.com/media/cache/resize_600_png/https---www.proballers.com/ul/player/luka-doncic-grande-1f086920-1793-6810-8b1b-270f1230ff14.png"},
     {"name": "Austin Reaves", "img": "https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4066457.png&w=350&h=254"},
     {"name": "Jayson Tatum", "img": "https://s3media.247sports.com/Uploads/Assets/601/513/9513601.jpg"},
-    {"name": "Derrick White", "img": "https://en.wikipedia.org/wiki/Derrick_White"},
+    {"name": "Derrick White", "img": "https://celticswire.usatoday.com/gcdn/authoring/images/smg/2024/12/21/SCEL/77131145007-39-128189.jpeg?width=660&height=440&fit=crop&format=pjpg&auto=webp"},
     {"name": "LaMelo Ball", "img": "https://pbs.twimg.com/media/DX9nEf8UMAEz-TH.jpg"},
     {"name": "Collin Sexton", "img": "https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4277811.png"},
     {"name": "Josh Giddey", "img": "https://images2.minutemediacdn.com/image/upload/c_fill,w_1200,ar_1:1,f_auto,q_auto,g_auto/images/GettyImages/mmsport/307/01k1xaeta5sbc5afq3f1.jpg"},
@@ -342,6 +342,7 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
 
 
