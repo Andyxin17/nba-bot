@@ -54,15 +54,18 @@ ny_tz = pytz.timezone("America/New_York")
 
 class Client(discord.Client):
 
-    async def setup_hook(self):
-        # Run once async setup is ready
-        self.bg_nba_task = asyncio.create_task(self.nba_game())
-        self.bg_status_task = asyncio.create_task(self.periodic_status())
-        self.bg_chef_task = asyncio.create_task(self.hourly_chef_message())
-        self.vip_watching = False
-        self.last_reset_day = datetime.now(ny_tz).date()
-
     async def on_ready(self):
+        if not hasattr(self, "tasks_started"):
+            self.tasks_started = True
+
+        # Start background tasks
+            self.bg_nba_task = asyncio.create_task(self.nba_game())
+            self.bg_status_task = asyncio.create_task(self.periodic_status())
+            self.bg_chef_task = asyncio.create_task(self.hourly_chef_message())
+
+        # Initialize other variables
+            self.vip_watching = False
+            self.last_reset_day = datetime.now(ny_tz).date()
         print(f'Logged on as {self.user}!')
         channel = self.get_channel(CHANNEL_ID)
         if channel:
@@ -339,6 +342,7 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
 
 
