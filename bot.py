@@ -9,7 +9,7 @@ BOT_TOKEN = os.environ['BOT_TOKEN']
 CHANNEL_ID = 1336640158640111732
 VIP_CHANNEL_ID = [1351454113212141588, 1351453716326125629]
 CHEF_USER_ID = 323775706800717825
-REQUIRED_USERS = random.randint(1,50)
+REQUIRED_USERS = random.randint(1,20)
 EMOJI_TO_TRACK = "🦞"
 unique_users = set()
 nba_players = [
@@ -342,6 +342,7 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
 
 
