@@ -40,6 +40,7 @@ funny_players = [
     {"name": "Chopped Chin", "img": "https://i.ytimg.com/vi/vx0LZ_oQlo4/hq720.jpg"},
     {"name": "Gilbert", "img": "https://i.imgflip.com/3m8m2y.png?a489696"},
     {"name": "Diddy", "img": "https://m.media-amazon.com/images/M/MV5BNTE1ODU3NTM1N15BMl5BanBnXkFtZTcwNTk0NDM4Nw@@._V1_.jpg"}
+    {"name": "Black Fortnite guy", "img": "https://pbs.twimg.com/ext_tw_video_thumb/1845258835486724099/pu/img/imcWxyPmvh0mX_kA.jpg:large"}
 ]
 
 ban_players = [
@@ -342,6 +343,7 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
 
 
