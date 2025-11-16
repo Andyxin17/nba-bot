@@ -87,7 +87,7 @@ class Client(discord.Client):
     # Weighted group choice
         group_choice = random.choices(
             ["nba", "funny", "ban", "goat"],
-            weights=[54, 34, 10, 2],
+            weights=[54, 39, 5, 2],
             k=1
         )[0]
 
@@ -343,6 +343,7 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
 
 
