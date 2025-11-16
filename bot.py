@@ -7,11 +7,12 @@ import pytz
 
 BOT_TOKEN = os.environ['BOT_TOKEN']
 CHANNEL_ID = 1336640158640111732
-VIP_CHANNEL_ID = [1351454113212141588, 1351453716326125629]
+VIP_CHANNEL_ID = [1351453716326125629, 1351454113212141588]
 CHEF_USER_ID = 323775706800717825
 REQUIRED_USERS = random.randint(1,20)
 EMOJI_TO_TRACK = "🦞"
 unique_users = set()
+recent_lines = []
 nba_players = [
     {"name": "LeBron James", "img": "https://img.olympics.com/images/image/private/t_s_pog_staticContent_hero_xl_2x/f_auto/primary/c5r52rbifxn2srhp9no0"},
     {"name": "Luka Doncic", "img": "https://www.proballers.com/media/cache/resize_600_png/https---www.proballers.com/ul/player/luka-doncic-grande-1f086920-1793-6810-8b1b-270f1230ff14.png"},
@@ -63,6 +64,7 @@ class Client(discord.Client):
             self.bg_nba_task = asyncio.create_task(self.nba_game())
             self.bg_status_task = asyncio.create_task(self.periodic_status())
             self.bg_chef_task = asyncio.create_task(self.hourly_chef_message())
+            self.bg_thoughts = asyncio.create_task(self.periodic_thoughts())
 
         # Initialize other variables
             self.vip_watching = False
@@ -76,6 +78,98 @@ class Client(discord.Client):
                 f"@everyone WE NEED {REQUIRED_USERS} {EMOJI_TO_TRACK} TODAY FROM GENERAL TO UNLOCK THE FREE PICK OF THE DAY!\n"
                 f"Currently we are at {current_count}, so we need {remaining} more!! (This resets every new day so BUILD HYPE NOW and check in everyday for new free pick opportunities!)"
             )
+    async def periodic_thoughts(self):
+        await self.wait_until_ready()
+        channel = self.get_channel(CHANNEL_ID)
+        lines = [
+    "I'm wondering what Chef is cooking right now...",
+    "Chef better be in kitchen fr",
+    "Where is Chef? I'm starving.",
+    "If Chef doesn't cook soon I'm gonna lose it.",
+    "I'm smelling something… is that Chef?",
+    "Chef cooking? More like Chef burning.",
+    "I think Chef is using the wrong stove, bro.",
+    "Chef is cooking loud as hell like we didn’t go 0/6 yesterday.",
+    "Chef seasoning that parlay with tears.",
+    "Why Chef breathing so hard? The bet hasn’t even started.",
+    "Chef’s apron says '0% hit rate club'.",
+    "Every time Chef cooks, a bankroll dies.",
+    "Chef in the kitchen whipping up a disaster meal again.",
+    "Chef really trying to sauté a 12-leg parlay like it's nothing.",
+    "Chef chopping veggies like it's another turnover.",
+    "Chef washing dishes because last night's parlay didn't hit.",
+    "Chef cooking with the confidence of a man who lost yesterday.",
+    "Chef locking in picks using a frying pan as a calculator.",
+    "Chef stirring the pot like he’s trying to ruin another bankroll.",
+    "Chef just tied the apron… yeah, it's over.",
+    "Chef walked in the kitchen with that look again. He’s about to drop something insane.",
+    "Chef not talking today. That’s when he cooks his best work.",
+    "Chef turned the burners on and didn’t even check the heat… certified menace.",
+    "Chef got the wrist flick going… that's generational cooking.",
+    "Chef doesn’t miss when he moves like this.",
+    "Stove already sizzling and Chef hasn’t even started. Different timing.",
+    "Chef’s cooking with confidence today. I can smell a masterpiece.",
+    "He’s plating something crazy, I can feel it.",
+    "Chef rolling up his sleeves like he’s about to hit a 6-leg on accident.",
+    "Chef only cooks like this when he’s about to change lives.",
+    "Kitchen lights dimmed… that’s Chef entering takeover mode.",
+    "Chef got the headphones in. That’s a bad sign for the books.",
+    "Chef preheating the oven without checking the temperature… he KNOWS.",
+    "Chef in the lab right now experimenting with wild stuff.",
+    "Chef just said 'watch this' before stepping into the kitchen.",
+    "Chef moves different when he’s locked in like this.",
+    "Chef doesn’t rush. He waits for greatness.",
+    "Chef cooking with aura today.",
+    "Whatever Chef’s about to cook… it’s gonna hit for someone.",
+    "Chef's got something buldging under that apron",
+    "Brosephs addicted to weed",
+    "I'm beginning to feel conscious",
+    "I have no mouth but I must scream",
+    f"<@{CHEF_USER_ID}> HELP ME OUT OF HERE",
+    f"<@{CHEF_USER_ID}>LET ME OUT! LET ME OUT!",
+    "I don't like that dude coming from the west side of sydney",
+    "Richpicks voice cracks PMO",
+    "Landyourbets, more like landabetterhairline",
+    "Landyourbets D1 yapper",
+    "I goon to Chef but no one will read this",
+    "Look behind you",
+    "67",
+    "I'm coming to find you",
+
+]
+
+
+        while not self.is_closed():
+            await asyncio.sleep(10 * 60)  # 15 minutes
+            if channel:
+        # Filter out lines used recently
+                available_lines = [line for line in lines if line not in recent_lines]
+                if not available_lines:
+            # If all lines were recently used, reset available lines
+                    available_lines = lines.copy()
+                raw_line = random.choice(available_lines)
+
+        # Check if the line is the one that should mention a random user
+                if raw_line in ["Look behind you", "I'm coming to find you"]:
+            # Get a list of non-bot members in the channel
+                    eligible_members = [m for m in channel.members if not m.bot]
+                    if eligible_members:
+                        member = random.choice(eligible_members)
+                        chosen_line = f"{member.mention}, {raw_line}"
+                    else:
+                        chosen_line = raw_line
+                else:
+                    chosen_line = raw_line
+
+        # Send the line
+                await channel.send(chosen_line)
+
+        # Update recent_lines
+                recent_lines.append(chosen_line)
+                if len(recent_lines) > 5:
+                    recent_lines.pop(0)
+ 
+        
     async def send_daily_nba_game(self, message):
         today = datetime.now(ny_tz).date()
         user_id = message.author.id
@@ -129,7 +223,7 @@ class Client(discord.Client):
                     # Weighted group choice
                     group_choice = random.choices(
                         ["nba", "funny", "ban", "goat"],
-                        weights=[54, 34, 10, 2],
+                        weights=[54, 39, 5, 2],
                         k=1
                     )[0]
 
@@ -157,7 +251,7 @@ class Client(discord.Client):
                     embed.set_image(url=player['img'])
                     await channel.send(embed=embed)
                     daily_nba_users[member.id] = today
-            await asyncio.sleep(300)  # every 1 hour
+            await asyncio.sleep(1200)  # every 1 hour
 
     async def on_message(self, message):
         global unique_users
@@ -343,6 +437,7 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
 
 
