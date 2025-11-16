@@ -98,7 +98,7 @@ class Client(discord.Client):
             msg = f"{message.author.mention}, you remind me of {player['name']}!"
         elif group_choice == "ban":
             player = random.choice(ban_players)
-            msg = f"{message.author.mention}, you remind me of {player['name']}! @everyone Avoid this guy, he gives Epstein vibes"
+            msg = f"{message.author.mention}, you remind me of {player['name']}! everyone Avoid this guy, he gives Epstein vibes"
         elif group_choice == "goat":
             player = random.choice(goat_players)
             msg = f"{message.author.mention}, YOU ARE THE GOAT, DM <@{CHEF_USER_ID}> for FREE VIP 1-DAY PASS ({player['name']})"
@@ -141,7 +141,7 @@ class Client(discord.Client):
                         msg = f"{member.mention}, you remind me of {player['name']}!"
                     elif group_choice == "ban":
                         player = random.choice(ban_players)
-                        msg = f"{member.mention}, you remind me of {player['name']}! @everyone This guy gives Epstein vibes"
+                        msg = f"{member.mention}, you remind me of {player['name']}! everyone This guy gives Epstein vibes"
                     elif group_choice == "goat":
                         player = random.choice(goat_players)
                         msg = f"{member.mention}, YOU ARE THE GOAT, DM <@{CHEF_USER_ID}> for FREE VIP 1-DAY PASS ({player['name']})"
@@ -231,7 +231,7 @@ class Client(discord.Client):
         channel = self.get_channel(CHANNEL_ID)
         if channel:
             try:
-                await channel.send(f"@everyone {member.name} left. SHAME on this nibberino for leaving. 😤")
+                await channel.send(f"everyone {member.name} left. SHAME on this nibberino for leaving. 😤")
                 caption = f"Just Doxxed that nibber-dibber for leaving this is what **{member.name}**'s house looks like."
                 embed = discord.Embed(title="Shame!", description=caption, color=discord.Color.red())
                 embed.set_image(url=img_url)
@@ -342,6 +342,7 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
 
 
