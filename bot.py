@@ -312,7 +312,7 @@ class Client(discord.Client):
                 ]
                 await message.channel.send(random.choice(jokes))
             else:
-                await message.channel.send("I'm not sure how to respond to that! Try saying 'hello' or 'tell me a joke'.")
+                await message.channel.send("What is my purpose.")
 
     # ---------------- MEMBER LEAVE SHAME ----------------
     async def on_member_remove(self, member):
@@ -438,6 +438,7 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
 
 
