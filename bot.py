@@ -135,6 +135,7 @@ class Client(discord.Client):
     "Look behind you",
     "67",
     "I'm coming to find you",
+    "What is my purpose",
 
 ]
 
@@ -437,6 +438,7 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
 
 
