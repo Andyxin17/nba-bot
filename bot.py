@@ -75,8 +75,8 @@ class Client(discord.Client):
             current_count = len(unique_users)
             remaining = REQUIRED_USERS - current_count
             await channel.send(
-                f"@everyone WE NEED {REQUIRED_USERS} {EMOJI_TO_TRACK} TODAY FROM GENERAL TO UNLOCK THE FREE PICK OF THE DAY!\n"
-                f"Currently we are at {current_count}, so we need {remaining} more!! (This resets every new day so BUILD HYPE NOW and check in everyday for new free pick opportunities!)"
+                f"@everyone WE NEED {remaining} {EMOJI_TO_TRACK} TODAY FROM GENERAL TO UNLOCK THE FREE PICK OF THE DAY!\n"
+                f"Currently we are at {current_count}!! (This resets every new day so BUILD HYPE NOW and check in everyday for new free pick opportunities!)"
             )
     async def periodic_thoughts(self):
         await self.wait_until_ready()
@@ -141,7 +141,7 @@ class Client(discord.Client):
 
 
         while not self.is_closed():
-            await asyncio.sleep(10 * 60)  # 15 minutes
+            await asyncio.sleep(3600 * 60)  # 15 minutes
             if channel:
         # Filter out lines used recently
                 available_lines = [line for line in lines if line not in recent_lines]
@@ -252,7 +252,7 @@ class Client(discord.Client):
                     embed.set_image(url=player['img'])
                     await channel.send(embed=embed)
                     daily_nba_users[member.id] = today
-            await asyncio.sleep(1200)  # every 1 hour
+            await asyncio.sleep(36000)  # every 1 hour
 
     async def on_message(self, message):
         global unique_users
@@ -283,7 +283,7 @@ class Client(discord.Client):
             if message.created_at.astimezone(ny_tz).date() == today:
                 main_channel = self.get_channel(CHANNEL_ID)
                 if main_channel:
-                    await main_channel.send(f"@everyone 🦞🦞🦞 LET'S GOOO EVERYONE, I'VE JUST LEAKED A VIP PICK! :\n{message.content}")
+                    await main_channel.send(f"@everyone 🦞🦞🦞 LET'S GOOO EVERYONE, I'VE JUST LEAKED A VIP PICK! <@{CHEF_USER_ID}> :\n{message.content}")
                 self.vip_watching = False
 
         # ---------------- LOBSTER TRACKING ----------------
@@ -362,7 +362,7 @@ class Client(discord.Client):
                     break
 
             if vip_pick_message:
-                await channel.send(f"@everyone 🦞🦞🦞 LET'S GOOO EVERYONE, HERE'S THE VIP LEAK! (DON'T TELL CHEF!):\n{vip_pick_message.content}")
+                await channel.send(f"@everyone 🦞🦞🦞 LET'S GOOO EVERYONE, HERE'S THE VIP LEAK! <@{CHEF_USER_ID}> (DON'T TELL CHEF!):\n{vip_pick_message.content}")
                 self.vip_watching = False
             else:
                 await channel.send("🦞🦞🦞 LET'S GOOO EVERYONE, IMMA LEAK a VIP pick as SOON as it's posted!")
@@ -372,8 +372,8 @@ class Client(discord.Client):
             unique_users.clear()
         else:
             await channel.send(
-                f"WE NEED {REQUIRED_USERS} {EMOJI_TO_TRACK} FROM GENERAL AND I'LL FUCKING LEAK A PICK FROM VIP!(Don't tell chef!)\n"
-                f"Currently we are at {current_count}, so we need {remaining} more!! (say 'leak' for update) (This resets every day!)"
+                f"WE NEED {remaining} {EMOJI_TO_TRACK} FROM GENERAL AND I'LL FUCKING LEAK A PICK FROM VIP!(Don't tell chef!)\n"
+                f"Currently we are at {current_count}, !! (say 'leak' for update) (This resets every day!)"
             )
 
     # ---------------- VIP PICK WATCHER ----------------
@@ -399,7 +399,7 @@ class Client(discord.Client):
                     await main_channel.send(f"@everyone 🦞🦞🦞 LET'S GOOO EVERYONE, I'VE JUST LEAKED A PICK FROM VIP! :\n{vip_pick_message.content}")
                 self.vip_watching = False
 
-            await asyncio.sleep(600)  # check every hour
+            await asyncio.sleep(3600)  # check every hour
 
     # ---------------- CHEF HOURLY MESSAGES ----------------
     async def hourly_chef_message(self):
@@ -438,6 +438,7 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
 
 
