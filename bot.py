@@ -303,7 +303,7 @@ class Client(discord.Client):
             msg_clean = msg_clean.lower().strip()
 
             if "hello" in msg_clean or "hi" in msg_clean:
-                await message.channel.send(f'Hi there {message.author.mention}!')
+                await message.channel.send(f'Merry Christmas {message.author.mention}!')
             elif "tell me a joke" in msg_clean or "joke" in msg_clean:
                 jokes = [
                     "Why did the scarecrow win an award? Because he was outstanding in his field!",
@@ -438,6 +438,7 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
 
 
