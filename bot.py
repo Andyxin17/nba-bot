@@ -9,7 +9,7 @@ BOT_TOKEN = os.environ['BOT_TOKEN']
 CHANNEL_ID = 1336640158640111732
 VIP_CHANNEL_ID = [1351453716326125629, 1351454113212141588]
 CHEF_USER_ID = 323775706800717825
-REQUIRED_USERS = random.randint(1,5)
+REQUIRED_USERS = random.randint(5,10)
 EMOJI_TO_TRACK = "🦞"
 unique_users = set()
 recent_lines = []
@@ -76,7 +76,7 @@ class Client(discord.Client):
             remaining = REQUIRED_USERS - current_count
             await channel.send(
                 f"@everyone WE NEED {remaining} {EMOJI_TO_TRACK} TODAY FROM GENERAL TO UNLOCK THE FREE PICK OF THE DAY!\n"
-                f"Currently we are at {current_count}!! (This resets every new day so BUILD HYPE NOW and check in everyday for new free pick opportunities!)"
+                " (This resets every new day so BUILD HYPE NOW and check in everyday for new free pick opportunities!)"
             )
     async def periodic_thoughts(self):
         await self.wait_until_ready()
@@ -373,7 +373,7 @@ class Client(discord.Client):
         else:
             await channel.send(
                 f"WE NEED {remaining} {EMOJI_TO_TRACK} FROM GENERAL AND I'LL FUCKING LEAK A PICK FROM VIP!(Don't tell chef!)\n"
-                f"Currently we are at {current_count}, !! (say 'leak' for update) (This resets every day!)"
+               " (say 'leak' for update) (This resets every day!)"
             )
 
     # ---------------- VIP PICK WATCHER ----------------
@@ -425,7 +425,7 @@ class Client(discord.Client):
         """Send team effort status every 3 hours if requirement not met."""
         await self.wait_until_ready()
         while not self.is_closed():
-            await asyncio.sleep(3 * 3600)  # 3 hours
+            await asyncio.sleep(8 * 3600)  # 3 hours
             channel = self.get_channel(CHANNEL_ID)
             if channel and len(unique_users) < REQUIRED_USERS:
                 await self.send_lobster_status(channel)
@@ -438,6 +438,7 @@ intents.members = True
 
 client = Client(intents=intents)
 client.run(BOT_TOKEN)
+
 
 
 
